@@ -25,6 +25,11 @@ from wagtail.core import urls as wagtail_urls
 
 
 urlpatterns = [
+    path('', TemplateView.as_view(
+            template_name='home.html', context={'posts': BlogPost.objects.all()}
+        ), name='home'
+    ),
+    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('django-admin/', admin.site.urls),
     path('admin/', include(wagtailadmin_urls)),
     path('pages/', include(wagtail_urls)),
