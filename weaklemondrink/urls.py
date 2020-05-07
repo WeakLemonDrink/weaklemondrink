@@ -19,17 +19,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-from django.views.generic import TemplateView
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 
+from about.views import AboutView
 from home.views import HomeView
 
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
+    path('about/', AboutView.as_view(), name='about'),
     path('django-admin/', admin.site.urls),
     path('admin/', include(wagtailadmin_urls)),
     path('pages/', include(wagtail_urls)),
