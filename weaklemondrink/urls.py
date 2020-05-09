@@ -23,14 +23,13 @@ from django.urls import include, path
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 
-from about.views import AboutView
-from home.views import HomeView
-
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('about/', AboutView.as_view(), name='about'),
     path('django-admin/', admin.site.urls),
     path('admin/', include(wagtailadmin_urls)),
-    path('pages/', include(wagtail_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+urlpatterns += [
+    path('', include(wagtail_urls)),
+]
