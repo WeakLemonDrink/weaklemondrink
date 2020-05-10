@@ -1,13 +1,11 @@
-{% load wagtailcore_tags %}
+{% load navigation_tags wagtailcore_tags %}
 
 <div class="row m-3">
     <div class="col-sm-3">
 		<h1><a href="/">Weak Lemon Drink</a></h1>
     </div>
     <div class="col-sm-3">
-	{% for tag in tags %}
-		<h1><a href="/?tag={{tag}}">{{tag}}</a></h1>
-	{% endfor %}
+	{% tag_links %}
     </div>
     <div class="col-sm-3"></div>
     <div class="col-sm-3 text-right">

@@ -1,0 +1,5 @@
+{% load navigation_tags %}
+
+{% for tag in tags %}
+	<h1><a href="/?tag={{tag}}">{{tag}}</a></h1>
+{% endfor %}
