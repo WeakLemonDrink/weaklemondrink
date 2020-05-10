@@ -21,4 +21,4 @@ def tag_links():
     Only show tags that have a page associated with them
     '''
 
-    return {'tags': Tag.objects.filter(blogpost__isnull=False)}
+    return {'tags': Tag.objects.filter(blogpost__isnull=False).distinct()}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+{% include "header_row.html" %}
+<div class="row m-3">
+	<div class="col">
+		<h1 class="display-1">{{page.title}}</h1>
+	</div>
+</div>
+<div class="row m-3">
+	<div class="col-3">
+		<p><span data-feather="calendar"></span> {{page.date}}</p>
+		{% if page.tags.exists %}<p><span data-feather="tag"></span> {% for tag in page.tags.all %}<span class="badge badge-primary">{{tag}}</span>{% endfor %}</p>{% endif %}
+	</div>
+	<div class="col-9">
+		{{page.body|richtext}}
+	</div>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+  feather.replace()
+</script>
+{% endblock script %}
