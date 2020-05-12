@@ -8,7 +8,7 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 
-from blog.models import BlogPost
+from blog.models import BlogPage
 
 
 class AboutPage(Page):
@@ -39,17 +39,17 @@ class HomePage(Page):
         context = super().get_context(request, *args, **kwargs)
 
         # If a valid `tag` querystring has been sent via the request, filter
-        # `BlogPost` entries with this tag
+        # `BlogPage` entries with this tag
         request_tag_name = request.GET.get('tag', None)
 
-        # Filter `BlogPost` entries just by `live` by default
+        # Filter `BlogPage` entries just by `live` by default
         filter_kwargs['live'] = True
 
         if request_tag_name:
             if Tag.objects.filter(name=request_tag_name).exists():
                 filter_kwargs['tags__name__in'] = [request_tag_name]
 
-        # Add `BlogPost` queryset to the context filtered using `filter_kwargs`
-        context['posts'] = BlogPost.objects.filter(**filter_kwargs)
+        # Add `BlogPage` queryset to the context filtered using `filter_kwargs`
+        context['pages'] = BlogPage.objects.filter(**filter_kwargs)
 
         return context
